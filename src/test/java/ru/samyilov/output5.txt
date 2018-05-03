@@ -1,0 +1,9 @@
+6 aaa
+3 BBa
+1 bbA
+1 bBA
+2 BbA
+1 BBa
+1 Bba
+1 bBA
+1 bBb

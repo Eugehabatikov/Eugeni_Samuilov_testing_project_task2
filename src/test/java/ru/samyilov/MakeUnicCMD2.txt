@@ -1,0 +1,4 @@
+src\test\java\ru\samyilov\MakeUnicInput2.txt
+-u
+-s
+2

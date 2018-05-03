@@ -1,0 +1,5 @@
+src\test\java\ru\samyilov\input1.txt
+-c
+-i
+-s
+2

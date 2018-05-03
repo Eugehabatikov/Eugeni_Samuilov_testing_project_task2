@@ -1,0 +1,5 @@
+8 aaa
+4 BBA
+3 bba
+1 bBA
+1 bBb

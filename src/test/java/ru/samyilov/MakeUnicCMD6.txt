@@ -1,0 +1,4 @@
+src\test\java\ru\samyilov\MakeUnicInput3.txt
+-i
+-u
+-c
