@@ -1,6 +1,6 @@
-src\test\java\ru\samyilov\MakeUnicInput1.txt -u -s 1
-src\test\java\ru\samyilov\MakeUnicInput2.txt -u -s 2
-src\test\java\ru\samyilov\MakeUnicInput3.txt -i -u
-src\test\java\ru\samyilov\MakeUnicInput4.txt -u
-src\test\java\ru\samyilov\MakeUnicInput5.txt -i -u -s 2
-src\test\java\ru\samyilov\MakeUnicInput6.txt -i -u -c
+src\test\resources\MakeUniqInput1.txt -u -s 1
+src\test\resources\MakeUniqInput2.txt -u -s 2
+src\test\resources\MakeUniqInput3.txt -i -u
+src\test\resources\MakeUniqInput4.txt -u
+src\test\resources\MakeUniqInput5.txt -i -u -s 2
+src\test\resources\MakeUniqInput6.txt -i -u -c

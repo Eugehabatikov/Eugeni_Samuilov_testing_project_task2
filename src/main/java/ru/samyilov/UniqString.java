@@ -1,5 +1,6 @@
 package ru.samyilov;
 
+import javax.swing.*;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
@@ -21,6 +22,14 @@ public class UniqString {
     private ArrayList<String> store;
     private ArrayList<Integer> counts;
 
+    public UniqString(String fileName){
+        File inputFile = null;
+        if(fileName != null){
+            inputFile = new File(fileName);
+        }
+        this.loadStrings(inputFile);
+    }
+
     /**
      * checks the incoming line, and,
      * depending on the incoming data,
@@ -28,6 +37,7 @@ public class UniqString {
      * @param inputFile if !=null - scan in this ,else scan in command line
      * @return data in array "store"
      */
+
     public ArrayList<String> loadStrings(File inputFile) {
         Scanner input;
         store = new ArrayList<>();
@@ -38,13 +48,20 @@ public class UniqString {
             }
             if (inputFile != null) {
                 input = new Scanner(inputFile);
+                while (input.hasNextLine()) {
+                    store.add(input.nextLine());
+                    counts.add(1);
+                }
             } else {
                 input = new Scanner(System.in);
-            }
-            while (input.hasNextLine()) {
-                store.add(input.nextLine());
+                System.out.println("Type your strings. To end input press Ctrl + D");
+                String s = input.nextLine();
+                while((s = input.nextLine()) != null){
+                store.add(s);
                 counts.add(1);
+                }
             }
+
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         }
@@ -78,6 +95,12 @@ public class UniqString {
             String str22;
             int startIndex;
             if (s != 0) {
+                if(s < 0){
+                    throw new IllegalArgumentException();
+                }
+                if (s > str1.length() || s > str2.length()){
+                    throw new IllegalArgumentException();
+                }
                 startIndex = s;
                 str12 = str1.substring(startIndex);
                 str22 = str2.substring(startIndex);// нужно проверить что стартиндех Б длины строки

@@ -13,10 +13,10 @@ import static org.junit.jupiter.api.Assertions.*;
 class UniqStringTest {
     @Test
     void loadStrings() {
-        UniqString us = new UniqString();
+        UniqString us = new UniqString("src\\test\\resources\\input1.txt");
         File inputFile = null;
         try {
-            inputFile = new File("input1.txt");
+            inputFile = new File("src\\test\\resources\\input1.txt");
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -47,7 +47,7 @@ class UniqStringTest {
 
     @Test
     void strUnion() {
-        File cmmd = new File("src\\test\\java\\ru\\samyilov\\resources\\cmd.txt");
+        File cmmd = new File("src\\test\\resources\\cmd.txt");
         Scanner cmd = null;
         int i = 1;
         try {
@@ -61,10 +61,9 @@ class UniqStringTest {
             try {
                 String[] args = cmd.nextLine().split(" ");
                 JCommander.newBuilder().addObject(cla).build().parse(args);
-                UniqString us = new UniqString();
-                us.loadStrings(new File(cla.file));
+                UniqString us = new UniqString(cla.file);
                 ArrayList<String> actual = us.strUnion(cla.i, cla.s);
-                File exp = new File("src\\test\\java\\ru\\samyilov\\resources\\output" + i + ".txt");
+                File exp = new File("src\\test\\resources\\output" + i + ".txt");
                 ArrayList<String> expected = new ArrayList<>();
                 try {
                     Scanner inp = new Scanner(exp);
@@ -90,7 +89,7 @@ class UniqStringTest {
 
     @Test
     void makeUniq() {
-        File cmmd = new File("src\\test\\java\\ru\\samyilov\\resources\\MakeUniqCMD.txt");
+        File cmmd = new File("src\\test\\resources\\MakeUniqCMD.txt");
         Scanner cmd = null;
         try {
             cmd = new Scanner(cmmd);
@@ -103,14 +102,13 @@ class UniqStringTest {
             try {
                 String[] args = cmd.nextLine().split(" ");
                 JCommander.newBuilder().addObject(cla).build().parse(args);
-                UniqString us = new UniqString();
-                us.loadStrings(new File(cla.file));
+                UniqString us = new UniqString(cla.file);
                 us.strUnion(cla.i, cla.s);
                 ArrayList<String> actual = null;
                 if (cla.u) {
                     actual = us.makeUniq(cla.s);
                 }
-                File exp = new File("src\\test\\java\\ru\\samyilov\\resources\\MakeUniqOutput" + i + ".txt");
+                File exp = new File("src\\test\\resources\\MakeUniqOutput" + i + ".txt");
                 ArrayList<String> expected = new ArrayList<>();
                 try {
                     Scanner inp = new Scanner(exp);
@@ -138,7 +136,7 @@ class UniqStringTest {
 
     @Test
     void save() {
-        File cmmd = new File("src\\test\\java\\ru\\samyilov\\resources\\SaveCMD.txt");
+        File cmmd = new File("src\\test\\resources\\SaveCMD.txt");
         Scanner cmd = null;
         try {
             cmd = new Scanner(cmmd);
@@ -151,14 +149,8 @@ class UniqStringTest {
             try {
                 String[] args = cmd.nextLine().split(" ");
                 JCommander.newBuilder().addObject(cla).build().parse(args);
-                UniqString us = new UniqString();
-                us.loadStrings(new File(cla.file));
+                UniqString us = new UniqString(cla.file);
                 us.strUnion(cla.i, cla.s);
-                if(cla.o.exists()){
-                    if(!cla.o.delete()){
-                        System.out.println("xxxx");
-                    }
-                }
                 if (cla.u) {
                     us.makeUniq(cla.s);
                 }
@@ -172,7 +164,7 @@ class UniqStringTest {
                 while (actualScan.hasNext()) {
                     actual.add(actualScan.nextLine());
                 }
-                File exp = new File("src\\test\\java\\ru\\samyilov\\resources\\SaveOutput" + i + ".txt");
+                File exp = new File("src\\test\\resources\\SaveOutput" + i + ".txt");
                 ArrayList<String> expected = new ArrayList<>();
                 try {
                     Scanner inp = new Scanner(exp);

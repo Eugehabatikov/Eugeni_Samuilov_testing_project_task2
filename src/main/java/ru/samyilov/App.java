@@ -11,12 +11,7 @@ public class App
         Args cla = new Args();
         JCommander.newBuilder().addObject(cla).build().parse(args);
 
-        UniqString us = new UniqString();
-        File inputFile = null;
-        if(cla.file != null){
-            inputFile = new File(cla.file);
-        }
-        us.loadStrings(inputFile);
+        UniqString us = new UniqString(cla.file);
         us.strUnion(cla.i, cla.s);
         if(cla.u){
             us.makeUniq(cla.s);
