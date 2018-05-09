@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import java.util.ListIterator;
 import java.util.Scanner;
 
+
 /**
  class allows you to process lines, remove all the same, as well as on request:
  ignore case
@@ -16,7 +17,7 @@ import java.util.Scanner;
  leave only unique lines
  read from any files parameters and data, as well as output the result to any file
  */
-public class unicString {
+public class UniqString {
     private ArrayList<String> store;
     private ArrayList<Integer> counts;
 
@@ -32,6 +33,9 @@ public class unicString {
         store = new ArrayList<>();
         counts = new ArrayList<>();
         try {
+            if(inputFile != null && !inputFile.exists()){
+                throw new NoSuchFieldException("File " + inputFile.getName() + " doesn't exsist");
+            }
             if (inputFile != null) {
                 input = new Scanner(inputFile);
             } else {
@@ -42,6 +46,9 @@ public class unicString {
                 counts.add(1);
             }
         } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
+        catch (NoSuchFieldException e){
             e.printStackTrace();
         }
         return store;
@@ -101,7 +108,7 @@ public class unicString {
      * @param s number of characters to ignore when comparing
      * @return data  in array "store"
      */
-    public ArrayList<String> makeUnic(int s) {
+    public ArrayList<String> makeUniq(int s) {
         ArrayList<String> temp = new ArrayList<>();
         ListIterator<String> iteratorStore1 = store.listIterator();
         while (iteratorStore1.hasNext()) {
@@ -140,21 +147,39 @@ public class unicString {
      * @param c implements the -c option
      */
     public void save(File outputFile, boolean c) {
+        PrintStream ps = null;
         if (outputFile != null) {
+            if(outputFile.exists()){
+                System.out.println("File " + outputFile.getName() + " alredy exists.");
+                Scanner input = new Scanner(System.in);
+                String answer = null;
+                while(answer != "y" && answer != "n"){
+                    System.out.println("Do you want to replase it: y/n ");
+                    answer = input.nextLine();
+                }
+                if(answer == "n"){
+                    return;
+                }
+            }
             try {
-                System.setOut(new PrintStream(new FileOutputStream(outputFile)));
+                ps = new PrintStream(new FileOutputStream(outputFile));
             } catch (FileNotFoundException e) {
                 e.printStackTrace();
             }
-            ListIterator iterator = store.listIterator();
-            ListIterator iteratorCount = counts.listIterator();
-            while (iterator.hasNext()) {
-                if (c) {
-                    System.out.println(iteratorCount.next() + " " + iterator.next());
-                } else {
-                    System.out.println(iterator.next());
-                }
+        }
+        else{
+            ps = new PrintStream(System.out);
+        }
+        ListIterator iterator = store.listIterator();
+        ListIterator iteratorCount = counts.listIterator();
+        while (iterator.hasNext()) {
+            if (c) {
+                ps.println(iteratorCount.next() + " " + iterator.next());
+            } else {
+                ps.println(iterator.next());
             }
         }
+        ps.flush();
+        ps.close();
     }
 }

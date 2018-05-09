@@ -1,10 +1,8 @@
 package ru.samyilov;
 
 import com.beust.jcommander.Parameter;
-
 import java.io.File;
-import java.util.ArrayList;
-import java.util.List;
+
 
 public class Args {
     @Parameter(names = {"-s"}, description = " означает, что при сравнении" +

@@ -1,0 +1,5 @@
+src\test\java\ru\samyilov\SaveInput.txt -o savetestout.txt -c
+src\test\java\ru\samyilov\SaveInput.txt -o savetestout.txt -c -i
+src\test\java\ru\samyilov\SaveInput.txt -o savetestout.txt -c -s 3
+src\test\java\ru\samyilov\SaveInput.txt -o savetestout.txt -c -i -s 1
+src\test\java\ru\samyilov\SaveInput.txt -o savetestout.txt -u

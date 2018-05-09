@@ -1,0 +1,12 @@
+1 AAAA
+1 aaaa
+2 Aaaa
+1 BBBB
+1 bbbb
+1 Bbbb
+1 BbBb
+1 aaaa
+1 Aaaa
+1 SSSa
+1 DDDa
+1 fffA

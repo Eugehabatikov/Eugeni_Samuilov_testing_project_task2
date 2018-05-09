@@ -1,7 +1,6 @@
 package ru.samyilov;
 
 import com.beust.jcommander.JCommander;
-
 import java.io.File;
 
 
@@ -12,11 +11,15 @@ public class App
         Args cla = new Args();
         JCommander.newBuilder().addObject(cla).build().parse(args);
 
-        unicString us = new unicString();
-        us.loadStrings(new File(cla.file));
+        UniqString us = new UniqString();
+        File inputFile = null;
+        if(cla.file != null){
+            inputFile = new File(cla.file);
+        }
+        us.loadStrings(inputFile);
         us.strUnion(cla.i, cla.s);
         if(cla.u){
-            us.makeUnic(cla.s);
+            us.makeUniq(cla.s);
         }
         us.save(cla.o, cla.c);
     }

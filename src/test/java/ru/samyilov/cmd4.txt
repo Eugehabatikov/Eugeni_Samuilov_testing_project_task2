@@ -1,5 +1,0 @@
-src\test\java\ru\samyilov\input1.txt
--i
--s
-1
--c

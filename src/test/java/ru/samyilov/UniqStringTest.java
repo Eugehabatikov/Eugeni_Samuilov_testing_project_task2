@@ -2,20 +2,18 @@ package ru.samyilov;
 
 import com.beust.jcommander.JCommander;
 import org.junit.jupiter.api.Test;
-
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.ListIterator;
 import java.util.Scanner;
-
 import static org.junit.jupiter.api.Assertions.*;
 
-class unicStringTest {
 
+class UniqStringTest {
     @Test
     void loadStrings() {
-        unicString us = new unicString();
+        UniqString us = new UniqString();
         File inputFile = null;
         try {
             inputFile = new File("input1.txt");
@@ -49,25 +47,24 @@ class unicStringTest {
 
     @Test
     void strUnion() {
-        Args cla = new Args();
-        for (int i = 1; i < 9; i++) {
-            File cmmd = new File("src\\test\\java\\ru\\samyilov\\cmd" + i + ".txt");
+        File cmmd = new File("src\\test\\java\\ru\\samyilov\\resources\\cmd.txt");
+        Scanner cmd = null;
+        int i = 1;
+        try {
+            cmd = new Scanner(cmmd);
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
+        while (cmd.hasNextLine()) {
+            Args cla = new Args();
+
             try {
-                Scanner cmd = new Scanner(cmmd);
-                ArrayList<String> argsList = new ArrayList<String>();
-                while (cmd.hasNext()) {
-                    argsList.add(cmd.nextLine());
-                }
-                String[] args = new String[argsList.size()];
-                ListIterator<String> iteratorArgs = argsList.listIterator();
-                while (iteratorArgs.hasNext()) {
-                    args[iteratorArgs.nextIndex()] = iteratorArgs.next();
-                }
+                String[] args = cmd.nextLine().split(" ");
                 JCommander.newBuilder().addObject(cla).build().parse(args);
-                unicString us = new unicString();
+                UniqString us = new UniqString();
                 us.loadStrings(new File(cla.file));
                 ArrayList<String> actual = us.strUnion(cla.i, cla.s);
-                File exp = new File("src\\test\\java\\ru\\samyilov\\output" + i + ".txt");
+                File exp = new File("src\\test\\java\\ru\\samyilov\\resources\\output" + i + ".txt");
                 ArrayList<String> expected = new ArrayList<>();
                 try {
                     Scanner inp = new Scanner(exp);
@@ -81,39 +78,39 @@ class unicStringTest {
                 ListIterator iteratorActual = actual.listIterator();
                 ListIterator iteratorExpected = expected.listIterator();
                 while (iteratorActual.hasNext()) {
-                    assertTrue(iteratorExpected.next().equals(iteratorActual.next()),"test № " + i + " Fail");
+                    assertTrue(iteratorExpected.next().equals(iteratorActual.next()), "test № " + i + " Fail");
                 }
+                System.out.println("test №" + i + " pass");
             } catch (Exception e) {
                 e.printStackTrace();
             }
+            i += 1;
         }
     }
 
     @Test
-    void makeUnic() {
-        Args cla = new Args();
-        for (int i = 1; i < 7; i++) {
-            File cmmd = new File("src\\test\\java\\ru\\samyilov\\MakeUnicCMD" + i + ".txt");
+    void makeUniq() {
+        File cmmd = new File("src\\test\\java\\ru\\samyilov\\resources\\MakeUniqCMD.txt");
+        Scanner cmd = null;
+        try {
+            cmd = new Scanner(cmmd);
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
+        int i = 1;
+        while (cmd.hasNextLine()) {
+            Args cla = new Args();
             try {
-                Scanner cmd = new Scanner(cmmd);
-                ArrayList<String> argsList = new ArrayList<String>();
-                while (cmd.hasNext()) {
-                    argsList.add(cmd.nextLine());
-                }
-                String[] args = new String[argsList.size()];
-                ListIterator<String> iteratorArgs = argsList.listIterator();
-                while (iteratorArgs.hasNext()) {
-                    args[iteratorArgs.nextIndex()] = iteratorArgs.next();
-                }
+                String[] args = cmd.nextLine().split(" ");
                 JCommander.newBuilder().addObject(cla).build().parse(args);
-                unicString us = new unicString();
+                UniqString us = new UniqString();
                 us.loadStrings(new File(cla.file));
                 us.strUnion(cla.i, cla.s);
                 ArrayList<String> actual = null;
-                if(cla.u){
-                    actual = us.makeUnic(cla.s);
+                if (cla.u) {
+                    actual = us.makeUniq(cla.s);
                 }
-                File exp = new File("src\\test\\java\\ru\\samyilov\\MakeUnicOutput" + i + ".txt");
+                File exp = new File("src\\test\\java\\ru\\samyilov\\resources\\MakeUniqOutput" + i + ".txt");
                 ArrayList<String> expected = new ArrayList<>();
                 try {
                     Scanner inp = new Scanner(exp);
@@ -127,55 +124,62 @@ class unicStringTest {
                 ListIterator iteratorActual = actual.listIterator();
                 ListIterator iteratorExpected = expected.listIterator();
                 while (iteratorActual.hasNext()) {
-                    assertTrue(iteratorExpected.next().equals(iteratorActual.next()),"test № " + i + " Fail");
+                    assertTrue(iteratorExpected.next().equals(iteratorActual.next()), "test № " + i + " Fail");
                 }
+                System.out.println("test №" + i + " pass");
             } catch (Exception e) {
                 e.printStackTrace();
+
             }
+            i += 1;
         }
 
     }
 
     @Test
     void save() {
-        Args cla = new Args();
-        for (int i = 1; i < 5 ; i++) {
-            File cmmd = new File("src\\test\\java\\ru\\samyilov\\MakeUnicCMD" + i + ".txt");
+        File cmmd = new File("src\\test\\java\\ru\\samyilov\\resources\\SaveCMD.txt");
+        Scanner cmd = null;
+        try {
+            cmd = new Scanner(cmmd);
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
+        int i = 1;
+        while (cmd.hasNext()) {
+            Args cla = new Args();
             try {
-                Scanner cmd = new Scanner(cmmd);
-                ArrayList<String> argsList = new ArrayList<String>();
-                while (cmd.hasNext()) {
-                    argsList.add(cmd.nextLine());
-                }
-                String[] args = new String[argsList.size()];
-                ListIterator<String> iteratorArgs = argsList.listIterator();
-                while (iteratorArgs.hasNext()) {
-                    args[iteratorArgs.nextIndex()] = iteratorArgs.next();
-                }
+                String[] args = cmd.nextLine().split(" ");
                 JCommander.newBuilder().addObject(cla).build().parse(args);
-                unicString us = new unicString();
+                UniqString us = new UniqString();
                 us.loadStrings(new File(cla.file));
                 us.strUnion(cla.i, cla.s);
-                if(cla.u){
-                    us.makeUnic(cla.s);
+                if(cla.o.exists()){
+                    if(!cla.o.delete()){
+                        System.out.println("xxxx");
+                    }
                 }
-                if(cla.o != null){
+                if (cla.u) {
+                    us.makeUniq(cla.s);
+                }
+                if (cla.o != null) {
                     us.save(cla.o, cla.c);
                 }
-                File actualOutput= new File("src\\test\\java\\ru\\samyilov\\test.txt");
+                File actualOutput = new File("savetestout.txt");
                 assertTrue(actualOutput.exists());
-                Scanner actualScan  = new Scanner(actualOutput);
-                ArrayList<String> actual = null;
-                while (actualScan.hasNext()){
+                Scanner actualScan = new Scanner(actualOutput);
+                ArrayList<String> actual = new ArrayList<>();
+                while (actualScan.hasNext()) {
                     actual.add(actualScan.nextLine());
                 }
-                File exp = new File("src\\test\\java\\ru\\samyilov\\MakeUnicOutput" + "i" + ".txt");
+                File exp = new File("src\\test\\java\\ru\\samyilov\\resources\\SaveOutput" + i + ".txt");
                 ArrayList<String> expected = new ArrayList<>();
                 try {
                     Scanner inp = new Scanner(exp);
                     while (inp.hasNext()) {
                         expected.add(inp.nextLine());
                     }
+                    inp.close();
                 } catch (FileNotFoundException e) {
                     e.printStackTrace();
                 }
@@ -183,12 +187,13 @@ class unicStringTest {
                 ListIterator iteratorActual = actual.listIterator();
                 ListIterator iteratorExpected = expected.listIterator();
                 while (iteratorActual.hasNext()) {
-                    assertTrue(iteratorExpected.next().equals(iteratorActual.next()),"test № " + i + " Fail");
+                    assertTrue(iteratorExpected.next().equals(iteratorActual.next()), "test № " + i + " Fail");
                 }
+                System.out.println("test №" + i + " pass");
             } catch (Exception e) {
                 e.printStackTrace();
             }
-
-     }
+            i++;
+        }
     }
 }
