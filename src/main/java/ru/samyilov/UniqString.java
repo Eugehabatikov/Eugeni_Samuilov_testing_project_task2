@@ -110,9 +110,7 @@ public class UniqString {
      */
     public ArrayList<String> makeUniq(int s) {
         ArrayList<String> temp = new ArrayList<>();
-        ListIterator<String> iteratorStore1 = store.listIterator();
-        while (iteratorStore1.hasNext()) {
-            String s11 = iteratorStore1.next();
+        for (String s11 : store) {
             String s12;
             if (s != 0) {
                 s12 = s11.substring(s);
@@ -120,9 +118,7 @@ public class UniqString {
                 s12 = s11;
             }
             int k = 0;
-            ListIterator<String> iteratorStore2 = store.listIterator();
-            while (iteratorStore2.hasNext()) {
-                String s21 = iteratorStore2.next();
+            for (String s21 : store) {
                 String s22;
                 if (s != 0) {
                     s22 = s21.substring(s);
@@ -152,12 +148,12 @@ public class UniqString {
             if(outputFile.exists()){
                 System.out.println("File " + outputFile.getName() + " alredy exists.");
                 Scanner input = new Scanner(System.in);
-                String answer = null;
-                while(answer != "y" && answer != "n"){
-                    System.out.println("Do you want to replase it: y/n ");
+                String answer = " ";
+                while(!answer.equals("y") && !answer.equals("n")){
+                    System.out.println("Do you want to replace it: y/n ");
                     answer = input.nextLine();
                 }
-                if(answer == "n"){
+                if(answer.equals("n")){
                     return;
                 }
             }
