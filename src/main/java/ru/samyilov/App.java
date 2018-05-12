@@ -1,10 +1,8 @@
 package ru.samyilov;
 
 import com.beust.jcommander.JCommander;
-import java.io.File;
 
-
-public class App 
+public class App
 {
     public static void main( String[] args )
     {
