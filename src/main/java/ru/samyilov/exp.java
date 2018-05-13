@@ -1,10 +1,11 @@
 package ru.samyilov;
 
+import java.io.IOException;
 import java.util.Scanner;
+import java.util.TreeSet;
 
 public class exp {
-    public static void main(String[] args){
-        Scanner in = new Scanner(System.in);
-        String a = in.nextLine();
+    public static void main(String[] args) {
+
     }
 }

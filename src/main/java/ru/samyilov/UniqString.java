@@ -55,9 +55,8 @@ public class UniqString {
             } else {
                 input = new Scanner(System.in);
                 System.out.println("Type your strings. To end input press Ctrl + D");
-                String s = input.nextLine();
-                while((s = input.nextLine()) != null){
-                store.add(s);
+                while(input.hasNextLine()){
+                store.add(input.nextLine());
                 counts.add(1);
                 }
             }
@@ -103,7 +102,7 @@ public class UniqString {
                 }
                 startIndex = s;
                 str12 = str1.substring(startIndex);
-                str22 = str2.substring(startIndex);// нужно проверить что стартиндех Б длины строки
+                str22 = str2.substring(startIndex);
             } else {
                 str12 = str1;
                 str22 = str2;
@@ -168,6 +167,7 @@ public class UniqString {
     public void save(File outputFile, boolean c) {
         PrintStream ps = null;
         if (outputFile != null) {
+/*
             if(outputFile.exists()){
                 System.out.println("File " + outputFile.getName() + " alredy exists.");
                 Scanner input = new Scanner(System.in);
@@ -177,9 +177,11 @@ public class UniqString {
                     answer = input.nextLine();
                 }
                 if(answer.equals("n")){
+                    System.out.println("Data hasn't been save.");
                     return;
                 }
             }
+*/
             try {
                 ps = new PrintStream(new FileOutputStream(outputFile));
             } catch (FileNotFoundException e) {
