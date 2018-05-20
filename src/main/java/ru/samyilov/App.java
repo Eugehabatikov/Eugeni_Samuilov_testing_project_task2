@@ -12,7 +12,7 @@ public class App
         UniqString us = new UniqString(cla.file);
         us.strUnion(cla.i, cla.s);
         if(cla.u){
-            us.makeUniq(cla.s);
+            us.makeUniq(cla.i, cla.s);
         }
         us.save(cla.o, cla.c);
     }
