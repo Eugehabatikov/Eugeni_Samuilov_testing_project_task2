@@ -106,7 +106,7 @@ class UniqStringTest {
                 us.strUnion(cla.i, cla.s);
                 ArrayList<String> actual = null;
                 if (cla.u) {
-                    actual = us.makeUniq(cla.s);
+                    actual = us.makeUniq(cla.i, cla.s);
                 }
                 File exp = new File("src\\test\\resources\\MakeUniqOutput" + i + ".txt");
                 ArrayList<String> expected = new ArrayList<>();
@@ -152,7 +152,7 @@ class UniqStringTest {
                 UniqString us = new UniqString(cla.file);
                 us.strUnion(cla.i, cla.s);
                 if (cla.u) {
-                    us.makeUniq(cla.s);
+                    us.makeUniq(cla.i, cla.s);
                 }
                 if (cla.o != null) {
                     us.save(cla.o, cla.c);

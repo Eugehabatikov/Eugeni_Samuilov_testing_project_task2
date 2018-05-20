@@ -8,6 +8,7 @@ import java.io.PrintStream;
 import java.util.ArrayList;
 import java.util.ListIterator;
 import java.util.Scanner;
+import java.util.TreeSet;
 
 
 /**
@@ -130,22 +131,30 @@ public class UniqString {
      * @param s number of characters to ignore when comparing
      * @return data  in array "store"
      */
-    public ArrayList<String> makeUniq(int s) {
+    public ArrayList<String> makeUniq(boolean i,int s) {
         ArrayList<String> temp = new ArrayList<>();
         for (String s11 : store) {
             String s12;
-            if (s != 0) {
-                s12 = s11.substring(s);
-            } else {
+            if (i){
+                s12 = s11.toLowerCase();
+            }
+            else {
                 s12 = s11;
+            }
+            if (s != 0) {
+                s12 = s12.substring(s);
             }
             int k = 0;
             for (String s21 : store) {
                 String s22;
-                if (s != 0) {
-                    s22 = s21.substring(s);
-                } else {
+                if(i){
+                    s22 = s21.toLowerCase();
+                }
+                else {
                     s22 = s21;
+                }
+                if (s != 0) {
+                    s22 = s22.substring(s);
                 }
                 if (s12.equals(s22)) {
                     k++;
@@ -156,6 +165,11 @@ public class UniqString {
             }
         }
         store = temp;
+      /* реализация c TreeSet
+       TreeSet<String> set = new TreeSet<>(new StringComparator(i, s));
+        set.addAll(store);
+        store.clear();
+        store.addAll(set);*/
         return store;
     }
 
