@@ -96,7 +96,7 @@ class UniqStringTest {
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         }
-        int i = 1;
+        int j = 1;
         while (cmd.hasNextLine()) {
             Args cla = new Args();
             try {
@@ -108,7 +108,7 @@ class UniqStringTest {
                 if (cla.u) {
                     actual = us.makeUniq(cla.i, cla.s);
                 }
-                File exp = new File("src\\test\\resources\\MakeUniqOutput" + i + ".txt");
+                File exp = new File("src\\test\\resources\\MakeUniqOutput" + j + ".txt");
                 ArrayList<String> expected = new ArrayList<>();
                 try {
                     Scanner inp = new Scanner(exp);
@@ -118,18 +118,18 @@ class UniqStringTest {
                 } catch (FileNotFoundException e) {
                     e.printStackTrace();
                 }
-                assertEquals(expected.size(), actual.size(), "length is't eqals" + " № " + i);
+                assertEquals(expected.size(), actual.size(), "length is't eqals" + " № " + j);
                 ListIterator iteratorActual = actual.listIterator();
                 ListIterator iteratorExpected = expected.listIterator();
                 while (iteratorActual.hasNext()) {
-                    assertTrue(iteratorExpected.next().equals(iteratorActual.next()), "test № " + i + " Fail");
+                    assertTrue(iteratorExpected.next().equals(iteratorActual.next()), "test № " + j + " Fail");
                 }
-                System.out.println("test №" + i + " pass");
+                System.out.println("test №" + j + " pass");
             } catch (Exception e) {
                 e.printStackTrace();
 
             }
-            i += 1;
+            j++;
         }
 
     }
@@ -143,7 +143,7 @@ class UniqStringTest {
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         }
-        int i = 1;
+        int j = 1;
         while (cmd.hasNext()) {
             Args cla = new Args();
             try {
@@ -157,14 +157,14 @@ class UniqStringTest {
                 if (cla.o != null) {
                     us.save(cla.o, cla.c);
                 }
-                File actualOutput = new File("savetestout.txt");
+                File actualOutput = new File("src\\test\\resources\\savetestout.txt");
                 assertTrue(actualOutput.exists());
                 Scanner actualScan = new Scanner(actualOutput);
                 ArrayList<String> actual = new ArrayList<>();
                 while (actualScan.hasNext()) {
                     actual.add(actualScan.nextLine());
                 }
-                File exp = new File("src\\test\\resources\\SaveOutput" + i + ".txt");
+                File exp = new File("src\\test\\resources\\SaveOutput" + j + ".txt");
                 ArrayList<String> expected = new ArrayList<>();
                 try {
                     Scanner inp = new Scanner(exp);
@@ -179,13 +179,13 @@ class UniqStringTest {
                 ListIterator iteratorActual = actual.listIterator();
                 ListIterator iteratorExpected = expected.listIterator();
                 while (iteratorActual.hasNext()) {
-                    assertTrue(iteratorExpected.next().equals(iteratorActual.next()), "test № " + i + " Fail");
+                    assertTrue(iteratorExpected.next().equals(iteratorActual.next()), "test № " + j + " Fail");
                 }
-                System.out.println("test №" + i + " pass");
+                System.out.println("test №" + j + " pass");
             } catch (Exception e) {
                 e.printStackTrace();
             }
-            i++;
+            j++;
         }
     }
 }

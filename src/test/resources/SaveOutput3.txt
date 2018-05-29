@@ -1,6 +1,6 @@
 1 AAAA
 3 aaaa
 1 BBBB
-2 bbbb
-1 BbBb
-5 aaaa
+3 bbbb
+4 aaaa
+1 fffA

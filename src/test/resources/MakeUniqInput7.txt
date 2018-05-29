@@ -1,6 +1,5 @@
 aaa
 AAA
-AAA
 aaa
 bbb
 BBB

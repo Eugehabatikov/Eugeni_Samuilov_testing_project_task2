@@ -133,43 +133,25 @@ public class UniqString {
      */
     public ArrayList<String> makeUniq(boolean i,int s) {
         ArrayList<String> temp = new ArrayList<>();
+        ArrayList<Integer> tempCounts = new ArrayList<>();
+        int index = 0;
         for (String s11 : store) {
-            String s12;
-            if (i){
-                s12 = s11.toLowerCase();
-            }
-            else {
-                s12 = s11;
-            }
-            if (s != 0) {
-                s12 = s12.substring(s);
-            }
+            String s12 = format(s11, i, s);
             int k = 0;
             for (String s21 : store) {
-                String s22;
-                if(i){
-                    s22 = s21.toLowerCase();
-                }
-                else {
-                    s22 = s21;
-                }
-                if (s != 0) {
-                    s22 = s22.substring(s);
-                }
+                String s22 = format(s21, i, s);
                 if (s12.equals(s22)) {
                     k++;
                 }
             }
             if (k == 1) {
+                tempCounts.add(counts.get(index));
                 temp.add(s11);
             }
+            index++;
         }
         store = temp;
-      /* реализация c TreeSet
-       TreeSet<String> set = new TreeSet<>(new StringComparator(i, s));
-        set.addAll(store);
-        store.clear();
-        store.addAll(set);*/
+        counts = tempCounts;
         return store;
     }
 
@@ -181,21 +163,6 @@ public class UniqString {
     public void save(File outputFile, boolean c) {
         PrintStream ps = null;
         if (outputFile != null) {
-/*
-            if(outputFile.exists()){
-                System.out.println("File " + outputFile.getName() + " alredy exists.");
-                Scanner input = new Scanner(System.in);
-                String answer = " ";
-                while(!answer.equals("y") && !answer.equals("n")){
-                    System.out.println("Do you want to replace it: y/n ");
-                    answer = input.nextLine();
-                }
-                if(answer.equals("n")){
-                    System.out.println("Data hasn't been save.");
-                    return;
-                }
-            }
-*/
             try {
                 ps = new PrintStream(new FileOutputStream(outputFile));
             } catch (FileNotFoundException e) {
@@ -216,5 +183,18 @@ public class UniqString {
         }
         ps.flush();
         ps.close();
+    }
+    private String format(String str, boolean i, int s) {
+        String str1;
+        if (i){
+            str1 = str.toLowerCase();
+        }
+        else {
+            str1 = str;
+        }
+        if (s != 0) {
+            str1 = str1.substring(s);
+        }
+        return str1;
     }
 }
