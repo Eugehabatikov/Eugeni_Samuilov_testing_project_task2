@@ -1,5 +1,7 @@
 package ru.samyilov;
 
+import com.beust.jcommander.JCommander;
+
 import javax.swing.*;
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -22,6 +24,20 @@ import java.util.TreeSet;
 public class UniqString {
     private ArrayList<String> store;
     private ArrayList<Integer> counts;
+
+    public static void main( String[] args )
+    {
+        Args cla = new Args();
+        JCommander.newBuilder().addObject(cla).build().parse(args);
+
+        UniqString us = new UniqString(cla.file);
+        us.save(cla.o, cla.c);
+        us.strUnion(cla.i, cla.s);
+        if(cla.u){
+            us.makeUniq(cla.i, cla.s);
+        }
+        ;
+    }
 
     public UniqString(String fileName){
         File inputFile = null;
