@@ -28,15 +28,19 @@ public class UniqString {
     public static void main( String[] args )
     {
         Args cla = new Args();
-        JCommander.newBuilder().addObject(cla).build().parse(args);
-
+        JCommander jcmd = JCommander.newBuilder().addObject(cla).build();
+        jcmd.parse(args);
+        if(cla.help) {
+            jcmd.usage();
+            return;
+        }
         UniqString us = new UniqString(cla.file);
-        us.save(cla.o, cla.c);
+
         us.strUnion(cla.i, cla.s);
         if(cla.u){
             us.makeUniq(cla.i, cla.s);
         }
-        ;
+        us.save(cla.o, cla.c);
     }
 
     public UniqString(String fileName){

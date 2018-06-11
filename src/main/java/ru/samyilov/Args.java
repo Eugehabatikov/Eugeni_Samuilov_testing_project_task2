@@ -28,4 +28,6 @@ public class Args {
     @Parameter(description = "задает имя входного файла")
     public String file = null;
 
+    @Parameter(names = {"-help"}, help = true, description = "показывает справку по использованию программы")
+    public boolean help;
 }
